@@ -2,3 +2,28 @@ Gordon Rose
 CSCI206
 Lab01
 1/17/23
+
+1. One line mkdir command, making parent directories if needed: mkdir -p
+2. One sentence description of each of the following commands:
+ls: displays the contents of a folder
+pwd: shows the path your shell is at
+cp: copys a file from a source  to a destination
+mv: moves a file from a source to a destination
+rm: deletes a file at a given destination
+mkdir: makes a folder at a given destination
+rmdir: removes a folder at a given destination
+touch: creates a file at a given destination
+cat: concatenates a file
+more: reads a file
+less: reads a file but can do it backwards
+head: reads the start of a file.
+tail: reads the end of a file
+3. The command to start emacs without a GUI: emacs -nw
+4. The command to show line numbers in vim: :set number
+5. The command to show line numbers in emacs: M-x line-number-mode
+6. The command to save the content of the file in vim: :w
+7. The command to save the content of file in emacs: C-x C-s
+8. The command to delete the current line in vim: dd
+9. The command to delete the current line in emacs: C-a C-k
+10. After careful consideration, I will use vim in csci206 as my text editor.
+
