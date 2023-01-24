@@ -1,0 +1,11 @@
+(1) ex1: Checking if salary and isalary work.
+	Grade:   5 / 10
+	Comments: No salary.c file submitted
+
+
+(2) ex2: nogood compiles without warning with -Wall. -5 for each warning, -15 for an error
+	Grade:  15 / 15
+	Comments: Good!
+TOTAL:  20 /100
+
+Graded by: amm042@bucknell.edu
