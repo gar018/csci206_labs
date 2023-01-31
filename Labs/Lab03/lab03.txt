@@ -1,0 +1,9 @@
+strcpy(3) - copies a given character array and adds its value to a given character array destination.
+
+strncpy(3) - similar to strcpy, but allows the addition of a given n byte value to determine how many bytes of data you want to copy
+
+strcmp(3) - allows the comparison of two strings. if the two strings are equal, returns 0. Otherwise, returns a non-zero value.
+
+strncmp(3) - similar to strcmp, but allows the addition of a given n byte value to determine how many bytes of data you want to compare.
+
+strlen(3) - Takes a string parameter and returns its 'length' of characters as an int value.
