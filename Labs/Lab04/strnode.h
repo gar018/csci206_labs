@@ -7,3 +7,5 @@ struct strnode {
     int                  length;
     struct strnode*      next;
 };
+
+struct strnode *strnode_create(char *s, int length);
