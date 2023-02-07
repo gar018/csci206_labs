@@ -1,0 +1,12 @@
+(1) makefile: Makefile defines the required values
+	Grade:   3 /  3
+	Comments: Good!
+(2) fsm: FSM program parses words
+	Grade:  12 / 12
+	Comments: Good!
+(3) args: Command arguments and lab03.txt file answers
+	Grade:  10 / 10
+	Comments: Good!
+TOTAL:  25 /100
+
+Graded by: cz015@bucknell.edu
