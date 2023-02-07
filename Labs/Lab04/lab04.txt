@@ -1,0 +1,4 @@
+"Which struct is larger?"
+The course_t struct is larger than the course_node_t struct. Each 72 bytes and 32 bytes respectively.
+"Why these values?"
+Course_t uses arrays of set sizes to hold information, giving them a larger memory imprint. Course_node_t, however, uses pointers to achieve the same task,which will store the memory addresses of each piece of information.
