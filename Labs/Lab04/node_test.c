@@ -34,6 +34,10 @@ int main(int argc, char *argv[]) {
     p = p->next;
   }
 
+  //Unallocating nodes.
+  node_destroy(n1);
+  node_destroy(n2);
+  node_destroy(n3);
 
   return 0;
 }
