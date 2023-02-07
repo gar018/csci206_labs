@@ -3,7 +3,7 @@
 #endif
 
 struct strnode {
-    char                 str;
+    char*                str;
     int                  length;
     struct strnode*      next;
 };
