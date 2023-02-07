@@ -7,6 +7,12 @@
 (3) args: Command arguments and lab03.txt file answers
 	Grade:  10 / 10
 	Comments: Good!
-TOTAL:  25 /100
+(4) calc: Create commandline calc
+	Grade:  40 / 40
+	Comments: Good!
+(5) head: File IO with the standard library
+	Grade:  35 / 35
+	Comments: Good!
+TOTAL: 100 /100
 
 Graded by: cz015@bucknell.edu
