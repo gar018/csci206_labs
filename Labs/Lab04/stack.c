@@ -37,7 +37,7 @@ void stack_push(struct stack* s, void* src, int size) {
 
 void stack_pop(struct stack* s, void* dest, int size) {
     struct node* this_node = s->top;
-    if (dest != NULL) {
+    if (size > 0) {
         memcpy(dest, this_node->data, size);
     }
     s->top = this_node->next;
