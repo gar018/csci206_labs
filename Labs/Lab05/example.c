@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
   }
 
   ll_print(head);
-
+  ll_destroy(head);
   
   return 0;
 }

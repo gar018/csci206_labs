@@ -25,3 +25,9 @@ Use 'info locals' after stepping into a function.
 
 8.
 Use 'frame'
+
+LAB 05 RESPONSES
+
+ll_equal.c - Exercise 2:
+
+The problem with ll_equal was line 46, the line declaring the base case if statement. This condition could be met only if node a had a pointer val of NULL. However, it did not check for a b node value of NULL. Thus, the program could continue running and try to find NULL->next for the b node, which would cause the segmentation fault. I fixed the bug by appending an '|| b==NULL' to the condition.

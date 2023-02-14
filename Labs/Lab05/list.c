@@ -43,7 +43,7 @@ void ll_print(const node* list){
 int ll_equal(const node* a, const node* b) {
 
   /* base case, empty lists are equal */
-  if (a == NULL)
+  if (a == NULL || b == NULL)
   	return a == b;
 
   /* check if the first element is the same, if not we're done!  */
@@ -56,5 +56,13 @@ int ll_equal(const node* a, const node* b) {
 
 /* TODO: write this function, see lab writeup */
 int ll_has_cycle(node *head) {
-  return 0;
+  node* t = head; //tortoise
+  node* h = head; //hare
+
+  do {
+    if (h==NULL || h->next==NULL) return 0;
+    h = h->next->next;
+    t = t->next;
+  } while (t != h);
+  return 1;
 }
