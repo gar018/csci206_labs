@@ -1,0 +1,27 @@
+Gordon Rose
+HW 05 Responses
+2/13/23
+
+1.
+Use -g to provide GDB with further information.
+
+2.
+break <line #>
+
+3.
+next
+
+4.
+step
+
+5.
+continue
+
+6.
+Use 'print <var or expression>'
+
+7.
+Use 'info locals' after stepping into a function.
+
+8.
+Use 'frame'
