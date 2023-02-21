@@ -48,7 +48,7 @@ double one_half_double(void){
   Use an approach similar to one_half_single but now return
   the double precision IEEE 754 value for 0.5 (8 bytes).
   */
-  unsigned char val[8] = {};
+    unsigned char val[8] = {0,0,0,0,0,0,0xe0,0x3f};
   return *(double*)val;
 }
 
