@@ -1,0 +1,17 @@
+creat(2):
+creates a file at a given pathname. creat() is similar to open() with the exception that it automatically holds the flags O_CREAT, O_WRONLY, O_TRUNC.
+
+open(2):
+opens a file at a given pathname. it must be given a flag or a set of flags such as:
+O_RDONLY - Opens with reading perms only
+O_WRONLY - Opens with writing perms only
+O_RDWR - Opens with both reading and writing perms
+
+read(2):
+reads a files contents up to a certain amount of bytes. Also can hold a buffer that can allow read() to start at a certain point in a file
+
+write(2):
+writes on a specific files contents from a given buffer to a certain number of bytes.
+
+close(2):
+closes a given file. Once a file is closed it cannot be reused with its file descriptor.
