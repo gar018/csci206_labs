@@ -1,0 +1,35 @@
+Gordon Rose
+3/6/23
+Lab 08 Responses:
+-------------------
+1)
+Alias set up.
+2)
+a.
+ra
+
+ra is the register x1, and represents the 'Return address' register. This register would be used to hold an address for a caller to return back to after performing a subroutine.
+b.
+sp
+
+sp is the register x2, and represents the 'Stack pointer' register. The saver for this register is the callee, and would be used to hold a pointer toward the stack in the CPU.
+c.
+Registers to hold parameters and return values for functions/procedures
+
+a0/1 are the registers x10 & x11, and represent the 'Function arguments/ Return values' registers. These registers will hold parameters for set functions by the caller, as well as the return values.
+d.
+Registers to hold temporary values that are not preserved across different function calls
+
+t3-t6 are the registers x28-x31, and represent the 'Temporaries' registers. These registers are meant to store temporary values that only would be actively used within a function call.
+e.
+Registers to hold values that are supposed to be preserved across different function calls.
+
+s2-s11 are the registers x18-x27, and represent the 'Saved registers' registers. These registers hold values that are meant to be kept across different function calls.
+3)
+(reading string from keyboard):
+
+li a7, 8
+add a0, t0, zero
+li a1, 32
+ecall
+
