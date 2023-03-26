@@ -20,7 +20,7 @@ int main (int argc, char* argv[])
 
     return 0;
 }
-
+/*
 int is_prime(int n)
 {
   // return 1 if n is prime, 0 otherwise
@@ -34,4 +34,4 @@ int is_prime(int n)
   }
   return yes;
 }
-
+*/
