@@ -1,0 +1,19 @@
+Gordon Rose
+3/27/23
+---
+
+1.
+'Stack smashing' is utilizing the return address of a function in the stack to execute malicious code.
+
+2.
+Stack smashing is possible by overflowing a buffer with an input that holds the desired memory address to be executed. This input lines up its memory address with the stack's return address by overwriting it. That way, when the instruction set attempts to return to its original address, it unintentionally returns to the malicious program.
+
+3.
+Yes; the local variable ret has similar identities to the stack smashing version of (ret). In example3.c, ret is a pointer that points to the memory address where the function return address is being held. By dereferencing ret, it is capable of performing a change to the memory address being held in (ret).
+
+4.
+I am currently having problems with the RISCV machine and cannot answer this question
+
+5.
+I am currently having problems with the RISCV machine, but I will speculate that the instruction addi ra, ra, 48 will increment the return address value by 48, which is moving where the function returns further down the program to the 'How are you?' printf statement. Consequently, this will skip over the two previous printf statements as well as the reassignment of d.
+
