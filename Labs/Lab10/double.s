@@ -18,7 +18,7 @@ double_value:
     jal extra           # extra is a do-nothing procedure
     ld  ra, 0(sp)       # retriee the value of ra
     addi sp, sp, 8      # pop the stack
-#    addi ra, ra, 48    # skip to 'How are you?'
+    addi ra, ra, 48    # skip to 'How are you?'
     jr  ra
 
 extra:

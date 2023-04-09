@@ -27,11 +27,11 @@
  * Collect program arguments into a buffer, then print the buffer
  */
 void concat_arguments(int argc, char **argv) {
-  char buf[20];
+  char buf[20*argc+argc];
   char *p = buf;
   int  i;
   for (i = 1; i < argc; i++) {
-    strcpy(p, argv[i]);
+    strncpy(p, argv[i],20);
     p += strlen(argv[i]);
     if (i + 1 != argc) {
       *p++ = ' ';	/* Add a space back in */

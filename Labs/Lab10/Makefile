@@ -1,4 +1,4 @@
-CFLAGS = -g -c
+CFLAGS = -std=c99 -Wall -Werror -g
 EXES   = double
 
 all: $(EXES)

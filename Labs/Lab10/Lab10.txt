@@ -1,7 +1,7 @@
 Gordon Rose
 3/27/23
 ---
-
+Question 1:
 1.
 'Stack smashing' is utilizing the return address of a function in the stack to execute malicious code.
 
@@ -16,4 +16,118 @@ I am currently having problems with the RISCV machine and cannot answer this que
 
 5.
 I am currently having problems with the RISCV machine, but I will speculate that the instruction addi ra, ra, 48 will increment the return address value by 48, which is moving where the function returns further down the program to the 'How are you?' printf statement. Consequently, this will skip over the two previous printf statements as well as the reassignment of d.
+
+Question 2:
+1.
+sp: 0x7ffffffff240
+s0: 0x7ffffffff280
+ra: 0x5555555557de
+The original value of $ra is stored at sp+56, or 56 bytes offset of $sp.
+The original value of $s0 is stored at sp+48, or 48 bytes offset of $sp.
+parameters->
+a: sp+12
+b: sp+8
+c: sp+4
+buffer1:sp+24
+buffer2:sp+24 (this is due to our char strings not being defined, so the compiler places both values in the same address)
+ret: sp+16
+
+2.
+
+               c       b       a      ret    buf1/2   sfp      ra
+<---------- [      ][      ][      ][      ][      ][      ][      ]
+             0xf244  0xf248  0xf24c  0xf250  0xf258  0xf270  0xf278
+
+3.
+my_function is called at this instruction:
+0x00005555555557da <+20>:    jal ra,0x555555555756 <my_function>
+The memory address of my_function is 0x555555555756, which is the actual memory address of my_function.
+
+4.
+The instruction addi ra, ra, 48 increases the value of the memory address stored in the ra register by 48 bytes. When this happens, it moves over the addresses for the other instructions found in main, and subsequently lands on the instruction on main<+116>: auipc a0,0x0, which occurs right before the final print statement in C code. To have the previous statement be printed, we must change addi ra, ra, 48 to addi ra, ra, 36 .
+
+Question 3:
+
+1.
+When running the program over1, inputting a string less than 10 characters gives a normal response. Going beyond the 10 character limit prints '*** stack smasshing detected***: terminated' and causes a core dump.
+However, running over2 shows that an input longer than 10 bytes does not matter, as the program uses fgets, and limits the total input read to 10 bytes. Thus, stack smashing cannot occur.
+
+2.
+In over3, the program uses scanf and does not provide a buffer limit for how long the input may be. Thus, buffer overflows are possible.
+
+3.
+A rule of thumb I have devised is that if a program uses a function call that does not have an input character cap, it is capable of smashing the stack.
+
+4.
+When handling user input, make sure that there is a distinct limit for how long the input may be. This way, there is no possibility of writing beyond the given input frame.
+
+5.
+over5.c uses strcpy by copying the argument in argv[1] over to acctNumberStr. Since it is not using strncpy, it is prone to stack smashing.
+
+Question 4:
+1.
+&main = 0x55555889190c
+&d = 0x7fffcb5b52d0
+&i = 0x7fffcb5b52cc
+&j = 0x7fffcb5b52c8
+&k = 0x7fffcb5b52e4
+&buf[0] = 0x7fffcb5b52e8
+&buf[1] = 0x7fffcb5b52e9
+Main exists as text, while the remaining variables appear in the stack.
+
+2.
+    0x0000555555555914 <+8>: li  a5,12
+    0x0000555555555916 <+10>:    li  a4,1039
+    0x000055555555591a <+14>:    li  a3,4
+    0x000055555555591c <+16>:    li  a2,3
+    0x000055555555591e <+18>:    li  a1,2
+    0x0000555555555920 <+20>:    li  a0,1
+    0x0000555555555922 <+22>:    jal ra,0x555555555788 <test>
+
+The above instructions are used to invoke the parameters for the test function.
+
+3.
+ d = 0x7fffcb5b52d0
+ i = 0x7fffcb5b52cc
+ j = 0x7fffcb5b52c8
+ buf[0] = 0x7fffcb5b52e8
+ buf[1] = 0x7fffcb5b52e9
+ ra stored address = 72(sp) or 0x7ffffffff278
+ ra = 0x555555555922
+ s0 = 0x7ffffffff280
+ sp = 0x7ffffffff230
+ s0-sp = 0x50 or 80 bytes
+
+4.
+ high memory (stack bottom)
+ $s0        0x7ffffffff280
+ $sp        0x7ffffffff230
+ &buf[11]   0x7fffcb5b52f3
+ &buf[10]   0x7fffcb5b52f2
+ &buf[9]    0x7fffcb5b52f1
+ &buf[8]    0x7fffcb5b52f0
+ &buf[7]    0x7fffcb5b52ef
+ &buf[6]    0x7fffcb5b52ee
+ &buf[5]    0x7fffcb5b52ed
+ &buf[4]    0x7fffcb5b52ec
+ &buf[3]    0x7fffcb5b52eb
+ &buf[2]    0x7fffcb5b52ea
+ &buf[1]    0x7fffcb5b52e9
+ &buf[0]    0x7fffcb5b52e8
+ &k         0x7fffcb5b52e4
+ &d         0x7fffcb5b52d0
+ &i         0x7fffcb5b52cc
+ &j         0x7fffcb5b52c8
+ main       0x55555889190c
+ $ra        0x555555555922
+
+5.
+The processor would most likely be able to execute code outside the text segment. There is no defined boundaries for where these regions are. This is why stack smashing is able to work.
+
+Question 5:
+1.
+concat.c contains a limited size buffer to hold input information with the use of strcpy, which does not have a size restriction to make sure our buffer limit is obeyed. Additionally, our p pointer is increased based on the byte size of the string being brought in. Since there is no size checking for the input, our program is vulnerable if one were to create a large string that causes the p pointer to point to a malicious program far outside its own memory address.
+2.
+What makes programs vulnerable to smash stacking attacks are size-limited buffers following the use of non-size-limited input scanners.
+3.
 
