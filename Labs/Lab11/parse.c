@@ -22,12 +22,22 @@ int main(int argc, char* argv[])
 
   // TODO read file, parse each line, count bytes.
 int MAX_STRING_VALUE = 32;
-char *buf = malloc(MAX_STRING_VALUE);
+char buf[60];
+int address, size;
+char type[1];
 
 while (fgets(buf,MAX_STRING_VALUE,f) != NULL){
-    printf("%s",*buf);
+    sscanf(buf, "%s %x, %d", type, &address, &size);
+    if(strncmp(buf,"I",1) == 0) {
+        i_bytes += size;
+    }
+    else if(strncmp(buf, " S",2) == 0) {
+        s_bytes += size;
+    }
+    else {
+        l_bytes += size;
+    }
 }
-free(buf);
   // TODO when done, print the results.
   printf("%d, %d, %d\n", i_bytes, l_bytes, s_bytes);
   return 0;
