@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <math.h>
 
+
 int main(int argc, char* argv[])
 {
   if (argc < 3){
@@ -24,17 +25,48 @@ int main(int argc, char* argv[])
 
   int cache_size = atoi(argv[1]);
   int block_size = atoi(argv[2]);
+  int assoc = 1;
 
   printf("Simulating a direct-mapped %d kb cache with %d byte blocks on trace %s.\n", cache_size >> 10, block_size, argv[3]);
+
 
   // count of total cache accesses and number of hits
   // count - hits = misses
   long count = 0;
   long hits = 0;
 
+  int cache_lines = (cache_size/block_size) / assoc;
+  long *cache = malloc(assoc*sizeof(long)*cache_lines);
+  for (int i = 0; i < cache_lines; i++) {
+      cache[i]= -1;
+  }
+
+  /*for (int i = 0; i < cache_size; i+=sizeof(long)) {
+      printf("%lx\n",cache[i]);
+  }*/
+
+  char type[16];
+  long address;
+  int bytes;
+  char buf[32];
+
   // TODO process input file.
-
-
+  while(fgets(buf,32,f) != NULL) {
+    sscanf(buf,"%s %x, %d",type,&address,&bytes);
+    int index = (address/(assoc*block_size)) % (cache_size/(assoc*block_size)) ;
+    long tag = address / cache_size ;
+    int offset = address % block_size ;
+    //printf("Cache: %lx Addr: %lx, Index: %d\n",cache[index],tag,index);
+    if(cache[index] == tag) {
+        hits++;
+    }
+    else {
+        cache[index] = tag;
+    }
+    count++;
+  }
+  
+  free(cache);
   // finally print results, do not change the last 3 lines of output.
   printf("  Hits      %ld\n", hits);
   printf("  Misses    %ld\n", count-hits);

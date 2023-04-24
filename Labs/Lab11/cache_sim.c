@@ -34,8 +34,50 @@ int main(int argc, char* argv[])
   long count = 0;
   long hits = 0;
 
-  // TODO process input file.
+  int cache_lines = (cache_size/block_size) / associativity;
 
+long * cache = malloc(associativity*sizeof(long)*cache_lines);
+  for (int i = 0; i < associativity*cache_lines; i++) {
+      cache[i]= -1;
+  }
+  /*for (int i = 0; i < cache_size; i+=sizeof(long)) {
+      printf("%lx\n",cache[i]);
+  }*/
+
+  char type[16];
+  long address;
+  int bytes;
+  char buf[32];
+
+  // TODO process input file.
+  //printf("%d x %d way cache indices.\n",cache_lines,associativity);
+  while(fgets(buf,32,f) != NULL) {
+    int rr = (count-hits) % associativity;
+    sscanf(buf,"%s %x, %d",type,&address,&bytes);
+    int index = (address/(associativity*block_size)) % (cache_size/(associativity*block_size)) ;
+    long tag = address / cache_size ;
+    //int offset = address % block_size ;
+    int hit = 0;
+    int i = 0;
+    while (hit == 0 && i < associativity){
+        //printf("CacheTag: %lx AddrTag: %lx, Index: %d, Way:%d\n",cache[index+cache_lines*((rr+i)%associativity)],tag,index,((rr+i)%associativity));
+        if(cache[index+cache_lines*((rr+i)%associativity)] == tag) {
+            hits++;
+            hit = 1;
+        }
+        i++;
+    }
+    if (hit == 0) {
+        cache[index+cache_lines*(rr%associativity)] = tag;
+        //printf("---MISS---\n");
+    }
+    else {
+        //printf("---HIT---\n");
+    }
+    count++;
+  }
+
+  free(cache);
 
   // finally print results, do not change the last 3 lines of output.
   printf("  Hits      %ld\n", hits);
