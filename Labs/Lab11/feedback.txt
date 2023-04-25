@@ -1,0 +1,21 @@
+(1) Exercise 1: Generate memory trace using Valgrind.
+	Grade:  10 / 10
+	Comments: Automated check failed.
+(2) Exercise 2: Parse produces the correct results.
+	Grade:  15 / 15
+	Comments: Good!
+(3) Exercise 3: Direct-mapped cache simulator passes given tests.
+	Grade:  25 / 25
+	Comments: Automated check failed.
+(4) Exercise 4: Associative cache simulator passes given tests.
+	Grade:  25 / 25
+	Comments: Automated check failed.
+(5) Exercise 5: Answered 5 questions in Lab11.txt (5 points each).
+	Grade:  15 / 15
+	Comments: Good!
+(6) Exercise 6: Did experiments and justified answer for blocked algorithm.
+	Grade:  10 / 10
+	Comments: Good!
+TOTAL: 100 /100
+
+Graded by: cz015@bucknell.edu
